@@ -1,5 +1,8 @@
 import easygui
 
+up_bound = 25
+low_bound = 1
+
 monster_cards = {
     "Stoneling":
         {"Strength": 7,
@@ -89,22 +92,30 @@ def welcome():
 
 def add_card_organiser():
     name = easygui.enterbox("Enter the Name of the Monster", "Monster Card "
-                            "Creator").capitalize()
-    str_level = add_card(name, "Strength")
-    spe_level = add_card(name, "Speed")
-    ste_level = add_card(name, "Stealth")
-    cun_level = add_card(name, "Cunning")
+                            "Creator")
+    ****************************************************
+    name.capitalize()
     monster_cards[name] = {}
-    monster_cards[name]["Strength"] = str_level
-    monster_cards[name]["Speed"] = spe_level
-    monster_cards[name]["Stealth"] = ste_level
-    monster_cards[name]["Cunning"] = cun_level
+    add_card(name, "Strength")
+    add_card(name, "Speed")
+    add_card(name, "Stealth")
+    add_card(name, "Cunning")
+    yorn = easygui.ynbox(f"Are the Card details correct?\n\n{name}:\n"
+                         f"Strength = {monster_cards[name]['Strength']}\n"
+                         f"Speed = {monster_cards[name]['Speed']}\nStealth "
+                         f"= {monster_cards[name]['Stealth']}\nCunning = "
+                         f"{monster_cards[name]['Cunning']}", "Monster Card "
+                                                              "Creator")
+    if not yorn:
+        del monster_cards[name]
+        add_card_organiser()
 
 
 def add_card(name, stat):
     stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
-                                    "Monster Card Creator", upperbound=25,
-                                    lowerbound=1)
+                                    "Monster Card Creator", upperbound=up_bound
+                                    , lowerbound=low_bound)
+    monster_cards[name][stat] = stat_level
     return stat_level
 
 

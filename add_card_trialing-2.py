@@ -76,7 +76,7 @@ def welcome():
                                         "Delete Card", "Print Cards",
                                         "Exit"])
     if option == "Add Card":
-        add_card_organiser()
+        add_card()
     elif option == "Change Card":
         print("change_card()")
     elif option == "Delete Card":
@@ -87,25 +87,26 @@ def welcome():
         print("exit_program()")
 
 
-def add_card_organiser():
+def add_card():
     name = easygui.enterbox("Enter the Name of the Monster", "Monster Card "
                             "Creator").capitalize()
-    str_level = add_card(name, "Strength")
-    spe_level = add_card(name, "Speed")
-    ste_level = add_card(name, "Stealth")
-    cun_level = add_card(name, "Cunning")
+    str_level = easygui.integerbox("Enter the Level of Strength", "Monster "
+                                   "Card Creator", upperbound=25,
+                                   lowerbound=1)
+    spe_level = easygui.integerbox("Enter the Level of Speed", "Monster "
+                                   "Card Creator", upperbound=25,
+                                   lowerbound=1)
+    ste_level = easygui.integerbox("Enter the Level of Stealth", "Monster "
+                                   "Card Creator", upperbound=25,
+                                   lowerbound=1)
+    cun_level = easygui.integerbox("Enter the Level of Cunning", "Monster "
+                                   "Card Creator", upperbound=25,
+                                   lowerbound=1)
     monster_cards[name] = {}
     monster_cards[name]["Strength"] = str_level
     monster_cards[name]["Speed"] = spe_level
     monster_cards[name]["Stealth"] = ste_level
     monster_cards[name]["Cunning"] = cun_level
-
-
-def add_card(name, stat):
-    stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
-                                    "Monster Card Creator", upperbound=25,
-                                    lowerbound=1)
-    return stat_level
 
 
 welcome()
