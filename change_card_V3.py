@@ -99,19 +99,19 @@ def add_card_organiser():
             return
     name = name.capitalize()
     monster_cards[name] = {}
-    add_card(name, "Strength")
+    add_card(name, "Strength", "Creator")
     if monster_cards[name]['Strength'] is None:
         del monster_cards[name]
         return
-    add_card(name, "Speed")
+    add_card(name, "Speed", "Creator")
     if monster_cards[name]['Speed'] is None:
         del monster_cards[name]
         return
-    add_card(name, "Stealth")
+    add_card(name, "Stealth", "Creator")
     if monster_cards[name]['Stealth'] is None:
         del monster_cards[name]
         return
-    add_card(name, "Cunning")
+    add_card(name, "Cunning", "Creator")
     if monster_cards[name]['Cunning'] is None:
         del monster_cards[name]
         return
@@ -126,9 +126,9 @@ def add_card_organiser():
         add_card_organiser()
 
 
-def add_card(name, stat):
+def add_card(name, stat, title):
     stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
-                                    "Monster Card Creator",
+                                    f"Monster Card {title}",
                                     upperbound=UP_BOUND, lowerbound=LOW_BOUND)
     monster_cards[name][stat] = stat_level
 
@@ -158,9 +158,9 @@ def change_card():
             del monster_cards[name]
             name = new_name
         else:
-            add_card(name, option)
+            add_card(name, option, "Changer")
             while monster_cards[name][option] is None:
-                add_card(name, option)
+                add_card(name, option, "Changer")
 
         yorn = easygui.ynbox(f"{name}:\nStrength = "
                              f"{monster_cards[name]['Strength']}\nSpeed = "
@@ -168,7 +168,7 @@ def change_card():
                              f"{monster_cards[name]['Stealth']}\nCunning = "
                              f"{monster_cards[name]['Cunning']}\nWould you "
                              f"like to change anything else?",
-                             "Monster Card Creator")
+                             "Monster Card Changer")
         if not yorn:
             break
 

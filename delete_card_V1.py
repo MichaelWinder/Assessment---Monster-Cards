@@ -1,7 +1,7 @@
 import easygui
 
-up_bound = 25
-low_bound = 1
+UP_BOUND = 25
+LOW_BOUND = 1
 
 monster_cards = {
     "Stoneling":
@@ -83,7 +83,7 @@ def welcome():
     elif option == "Change Card":
         change_card()
     elif option == "Delete Card":
-        print("delete_card()")
+        delete_card()
     elif option == "Print Cards":
         print_cards()
     elif option == "Exit":
@@ -129,7 +129,7 @@ def add_card_organiser():
 def add_card(name, stat):
     stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
                                     "Monster Card Creator",
-                                    upperbound=up_bound, lowerbound=low_bound)
+                                    upperbound=UP_BOUND, lowerbound=LOW_BOUND)
     monster_cards[name][stat] = stat_level
 
 
@@ -171,6 +171,21 @@ def change_card():
                              "Monster Card Creator")
         if not yorn:
             break
+
+
+def delete_card():
+    monster_card_names = [i for i in monster_cards]
+    o = 1
+    while o == 1:
+        print(monster_card_names)
+        card_name = easygui.buttonbox("Which card would you like to delete?",
+                                      "Monster Card Deleter",
+                                      choices=monster_card_names)
+        yorn = easygui.ynbox(f"Are you sure you want to delete {card_name}?",
+                             "Monster Card Deleter")
+        if yorn:
+            o = 2
+    del monster_cards[card_name]
 
 
 while True:
