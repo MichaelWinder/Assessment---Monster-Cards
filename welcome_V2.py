@@ -13,7 +13,7 @@ def welcome():
                                         "Delete Card", "Print Cards",
                                         "Exit"])
     if option == "Add Card":
-        print("add_card()")
+        print("add_card_organiser()")
     elif option == "Change Card":
         print("change_card()")
     elif option == "Delete Card":

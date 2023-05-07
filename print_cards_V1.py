@@ -81,7 +81,7 @@ def welcome():
     if option == "Add Card":
         add_card_organiser()
     elif option == "Change Card":
-        change_card()
+        print("change_card()")
     elif option == "Delete Card":
         print("delete_card()")
     elif option == "Print Cards":
@@ -139,53 +139,6 @@ def print_cards():
 
         for skill in skill_level:
             print(f"{skill}: {skill_level[skill]}")
-
-
-def change_card():
-    monster_card_names = [i for i in monster_cards]
-    name = easygui.buttonbox("Select what Monster Card you would like to "
-                             "Change", "Monster Card Changer",
-                             choices=monster_card_names)
-    choice_list = ["Name", "Strength", "Speed", "Stealth", "Cunning"]
-    while True:
-        option = easygui.buttonbox(f"Select the part of {name} you would "
-                                   f"like to change", "Monster Card "
-                                   "Changer", choices=choice_list)
-        if option == "Name":
-            new_name = easygui.enterbox(f"Enter the new name for "
-                                        f"{name}", "Monster Card Changer")
-            monster_cards[new_name] = monster_cards[name]
-            del monster_cards[name]
-            name = new_name
-        elif option == "Strength":
-            stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
-                                            f"Strength", "Monster Card "
-                                            "Creator", upperbound=up_bound,
-                                            lowerbound=low_bound)
-            monster_cards[name]['Strength'] = stat_level
-        elif option == "Speed":
-            stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
-                                            f"Speed", "Monster Card "
-                                            "Creator", upperbound=up_bound,
-                                            lowerbound=low_bound)
-            monster_cards[name]['Speed'] = stat_level
-        elif option == "Stealth":
-            stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
-                                            f"Stealth", "Monster Card "
-                                            "Creator", upperbound=up_bound,
-                                            lowerbound=low_bound)
-            monster_cards[name]['Stealth'] = stat_level
-        elif option == "Cunning":
-            stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
-                                            f"Cunning", "Monster Card "
-                                            "Creator", upperbound=up_bound,
-                                            lowerbound=low_bound)
-            monster_cards[name]['Cunning'] = stat_level
-
-        yorn = easygui.ynbox("Would you like to change anything else?",
-                             "Monster Card Changer")
-        if not yorn:
-            break
 
 
 while True:

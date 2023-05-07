@@ -91,10 +91,9 @@ def welcome():
 
 
 def add_card_organiser():
-    name = easygui.enterbox("Enter the Name of the Monster", "Monster Card "
-                            "Creator")
-    ****************************************************
-    name.capitalize()
+    name = easygui.enterbox("Enter the Name of the Monster",
+                            "Monster Card Creator")
+    name = name.capitalize()
     monster_cards[name] = {}
     add_card(name, "Strength")
     add_card(name, "Speed")
@@ -113,10 +112,10 @@ def add_card_organiser():
 
 def add_card(name, stat):
     stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
-                                    "Monster Card Creator", upperbound=up_bound
-                                    , lowerbound=low_bound)
+                                    "Monster Card Creator",
+                                    upperbound=up_bound, lowerbound=low_bound)
     monster_cards[name][stat] = stat_level
-    return stat_level
 
 
-welcome()
+while True:
+    welcome()
