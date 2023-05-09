@@ -6,9 +6,11 @@ Cards as they choose to create a list of Cards they want.
 """
 import easygui
 
+# Changeable Variables
 UP_BOUND = 25
 LOW_BOUND = 1
 
+# Main Dictionary for the Monster Cards
 monster_cards = {
     "Stoneling":
         {"Strength": 7,
@@ -98,8 +100,8 @@ def welcome():
         exit_program()
 
 
+# The main code for adding a new Monster Card to the dictionary
 def add_card_organiser():
-    """Add a Monster Card to the Dictionary."""
     name = ""
     while len(name) == 0:
         name = easygui.enterbox("Enter the Name of the Monster",
@@ -135,16 +137,16 @@ def add_card_organiser():
         add_card_organiser()
 
 
+# Allows for a much simpler way of creating a Monster Card
 def add_card(name, stat, title):
-    """Add a Monster Card to the Dictionary."""
     stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
                                     f"Monster Card {title}",
                                     upperbound=UP_BOUND, lowerbound=LOW_BOUND)
     monster_cards[name][stat] = stat_level
 
 
+# Prints all the Monster Cards to the Console
 def print_cards():
-    """Print all Monster Cards to the console."""
     for name, skill_level in monster_cards.items():
         print(f"\nMonster Name: {name}")
 
@@ -152,8 +154,9 @@ def print_cards():
             print(f"{skill}: {skill_level[skill]}")
 
 
+# Allows the user to select what part of a certain Monster Card they would
+# like to change
 def change_card():
-    """Change the chosen Monster Card."""
     monster_card_names = [i for i in monster_cards]
     name = easygui.buttonbox("Select what Monster Card you would like to "
                              "Change", "Monster Card Changer",
@@ -185,8 +188,8 @@ def change_card():
             break
 
 
+# Deletes the selected Monster Card chosen by the user
 def delete_card():
-    """Delete chosen Monster Card."""
     monster_card_names = [i for i in monster_cards]
     monster_card_names.append("Exit")
     o = 1
@@ -203,8 +206,8 @@ def delete_card():
     del monster_cards[card_name]
 
 
+# Quits the program
 def exit_program():
-    """Quit the Program."""
     print_cards()
     print(f"\nThere are {len(monster_cards.items())} Monster Cards recorded")
     quit()
