@@ -158,6 +158,7 @@ def print_cards():
 # like to change
 def change_card():
     monster_card_names = [i for i in monster_cards]
+    new_name = ""
     name = easygui.buttonbox("Select what Monster Card you would like to "
                              "Change", "Monster Card Changer",
                              choices=monster_card_names)
@@ -167,8 +168,9 @@ def change_card():
                                    f"like to change", "Monster Card Changer",
                                    choices=choice_list)
         if option == "Name":
-            new_name = easygui.enterbox(f"Enter the new name for "
-                                        f"{name}", "Monster Card Changer")
+            while new_name == "" or new_name is None:
+                new_name = easygui.enterbox(f"Enter the new name for "
+                                            f"{name}", "Monster Card Changer")
             monster_cards[new_name] = monster_cards[name]
             del monster_cards[name]
             name = new_name
