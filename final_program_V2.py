@@ -1,5 +1,4 @@
 """This program is a tool for digitally creating a dictionary of Monster Cards.
-
 The Monster Cards consist of a Name and four different stats. Strength,
 Speed, Stealth, and Cunning. The user is able to manipulate the Monster
 Cards as they choose to create a list of Cards they want.
