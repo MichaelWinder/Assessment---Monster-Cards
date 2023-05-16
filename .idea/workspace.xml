@@ -37,8 +37,8 @@
       <recent name="C:\Users\Micha\OneDrive - Middleton Grange School\2023\Komputer Kcience\AS2.7-91896 Progaming\Assessment - Monster Cards" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.final_program_V1">
-    <configuration name="change_card_V3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.change_card_V4">
+    <configuration name="change_card_V4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Assessment - Monster Cards" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -50,7 +50,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/change_card_V3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/change_card_V4.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.change_card_V4" />
         <item itemvalue="Python.final_program_V1" />
         <item itemvalue="Python.exit_program_V2" />
         <item itemvalue="Python.print_cards_V1" />
         <item itemvalue="Python.delete_card_V2" />
-        <item itemvalue="Python.change_card_V3" />
       </list>
     </recent_temporary>
   </component>
