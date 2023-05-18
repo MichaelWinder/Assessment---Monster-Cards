@@ -85,8 +85,7 @@ def welcome():
                                "4- Print out the Full list of Monster Cards\n"
                                "5- Exit the Program", "Monster Card Menu",
                                choices=["Add Card", "Change Card",
-                                        "Delete Card", "Print Cards",
-                                        "Exit"])
+                                        "Delete Card", "Print Cards", "Exit"])
     if option == "Add Card":
         add_card_organiser()
     elif option == "Change Card":
@@ -102,10 +101,10 @@ def welcome():
 # The main code for adding a new Monster Card to the dictionary
 def add_card_organiser():
     name = ""
-    while len(name) == 0:
+    while name == "":   # Stops the user from entering nothing
         name = easygui.enterbox("Enter the Name of the Monster",
                                 "Monster Card Creator")
-        while name is None:
+        while name is None:     # Returns the user to main menu if they cancel
             return
     name = name.capitalize()
     monster_cards[name] = {}
@@ -138,7 +137,8 @@ def add_card_organiser():
 
 # Allows for a much simpler way of creating a Monster Card
 def add_card(name, stat, title):
-    stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
+    stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
+                                    f"{stat}\nMust be within 1-25",
                                     f"Monster Card {title}",
                                     upperbound=UP_BOUND, lowerbound=LOW_BOUND)
     monster_cards[name][stat] = stat_level
