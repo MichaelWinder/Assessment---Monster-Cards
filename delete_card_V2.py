@@ -176,8 +176,7 @@ def change_card():
 def delete_card():
     monster_card_names = [i for i in monster_cards]
     monster_card_names.append("Exit")
-    o = 1
-    while o == 1:
+    while True:
         card_name = easygui.buttonbox("Which card would you like to delete?",
                                       "Monster Card Deleter",
                                       choices=monster_card_names)
@@ -186,7 +185,7 @@ def delete_card():
         yorn = easygui.ynbox(f"Are you sure you want to delete {card_name}?",
                              "Monster Card Deleter")
         if yorn:
-            o = 2
+            break
     del monster_cards[card_name]
 
 

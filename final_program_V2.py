@@ -86,7 +86,7 @@ def welcome():
                                "5- Exit the Program", "Monster Card Menu",
                                choices=["Add Card", "Change Card",
                                         "Delete Card", "Print Cards", "Exit"])
-    if option == "Add Card":
+    if option == "Add Card":  # If statements to call on a function to run
         add_card_organiser()
     elif option == "Change Card":
         change_card()
@@ -101,15 +101,15 @@ def welcome():
 # The main code for adding a new Monster Card to the dictionary
 def add_card_organiser():
     name = ""
-    while name == "":   # Stops the user from entering nothing
+    while name == "":  # Stops the user from entering nothing
         name = easygui.enterbox("Enter the Name of the Monster",
                                 "Monster Card Creator")
-        while name is None:     # Returns the user to main menu if they cancel
+        while name is None:  # Returns the user to main menu if they cancel
             return
     name = name.capitalize()
     monster_cards[name] = {}
-    add_card(name, "Strength", "Creator")
-    if monster_cards[name]['Strength'] is None:
+    add_card(name, "Strength", "Creator")  # Adds the strength stat to the card
+    if monster_cards[name]['Strength'] is None:  # Cancels add_card_organiser()
         del monster_cards[name]
         return
     add_card(name, "Speed", "Creator")
@@ -130,9 +130,9 @@ def add_card_organiser():
                          f"= {monster_cards[name]['Stealth']}\nCunning = "
                          f"{monster_cards[name]['Cunning']}", "Monster Card "
                                                               "Creator")
-    if not yorn:
-        del monster_cards[name]
-        add_card_organiser()
+    if not yorn:  # Checks all details are correct
+        del monster_cards[name]  # deletes the card and resets if details
+        add_card_organiser()  # are incorrect
 
 
 # Allows for a much simpler way of creating a Monster Card
@@ -141,16 +141,17 @@ def add_card(name, stat, title):
                                     f"{stat}\nMust be within 1-25",
                                     f"Monster Card {title}",
                                     upperbound=UP_BOUND, lowerbound=LOW_BOUND)
-    monster_cards[name][stat] = stat_level
+    monster_cards[name][stat] = stat_level  # Adds stat to Monster Card
 
 
 # Prints all the Monster Cards to the Console
 def print_cards():
     for name, skill_level in monster_cards.items():
-        print(f"\nMonster Name: {name}")
+        print(f"\nMonster Name: {name}")  # Prints the name of the Card
 
         for skill in skill_level:
             print(f"{skill}: {skill_level[skill]}")
+            # Prints the skills of the Monster Card
 
 
 # Allows the user to select what part of a certain Monster Card they would
@@ -161,7 +162,7 @@ def change_card():
                              "Change", "Monster Card Changer",
                              choices=monster_card_names)
     choice_list = ["Name", "Strength", "Speed", "Stealth", "Cunning"]
-    while True:
+    while True:  # Loop for setting stats
         new_name = ""
         option = easygui.buttonbox(f"Select the part of {name} you would "
                                    f"like to change", "Monster Card Changer",
@@ -170,8 +171,10 @@ def change_card():
             while new_name == "":
                 new_name = easygui.enterbox(f"Enter the new name for "
                                             f"{name}", "Monster Card Changer")
-            if new_name is None:
+            if new_name is None:  # If user selects cancel returns to menu
                 return
+            # Stops the program from deleting the Monster Card if it has the
+            # same name
             if new_name != name:
                 monster_cards[new_name] = monster_cards[name]
                 del monster_cards[name]
@@ -188,34 +191,34 @@ def change_card():
                              f"{monster_cards[name]['Cunning']}\nWould you "
                              f"like to change anything else?",
                              "Monster Card Changer")
-        if not yorn:
+        if not yorn:  # Stops the loop to change name or another stat
             break
 
 
 # Deletes the selected Monster Card chosen by the user
 def delete_card():
-    monster_card_names = [i for i in monster_cards]
-    monster_card_names.append("Exit")
-    o = 1
-    while o == 1:
+    monster_card_names = [i for i in monster_cards]  # List of all the names
+    monster_card_names.append("Exit")  # Adds the exit command for the user
+    while True:
         card_name = easygui.buttonbox("Which card would you like to delete?",
                                       "Monster Card Deleter",
                                       choices=monster_card_names)
-        if card_name == "Exit":
+        if card_name == "Exit":  # Stops function
             return
         yorn = easygui.ynbox(f"Are you sure you want to delete {card_name}?",
                              "Monster Card Deleter")
         if yorn:
-            o = 2
-    del monster_cards[card_name]
+            break
+    del monster_cards[card_name]  # Deletes Monster Card
 
 
 # Quits the program
 def exit_program():
-    print_cards()
+    print_cards()  # Runs the print_cards() function
     print(f"\nThere are {len(monster_cards.items())} Monster Cards recorded")
-    quit()
+    quit()  # Quits the program
 
 
+# Loop to always bring the user back to the welcome screen
 while True:
     welcome()
