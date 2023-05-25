@@ -137,10 +137,12 @@ def add_card_organiser():
 
 # Allows for a much simpler way of creating a Monster Card
 def add_card(name, stat, title):
-    stat_level = easygui.integerbox(f"{name}:\nEnter the Level of "
-                                    f"{stat}\nMust be within 1-25",
+    stat_level = easygui.integerbox(f"{name}:\nEnter the Level of {stat}",
                                     f"Monster Card {title}",
                                     upperbound=UP_BOUND, lowerbound=LOW_BOUND)
+    if title == "Changer":
+        if stat_level is None:
+            return
     monster_cards[name][stat] = stat_level  # Adds stat to Monster Card
 
 

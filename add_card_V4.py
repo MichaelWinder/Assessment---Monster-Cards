@@ -81,11 +81,11 @@ def welcome():
     if option == "Add Card":
         add_card_organiser()
     elif option == "Change Card":
-        change_card()
+        print("change_card()")
     elif option == "Delete Card":
         print("delete_card()")
     elif option == "Print Cards":
-        print_cards()
+        print("print_cards()")
     elif option == "Exit":
         print("exit_program()")
 
@@ -134,48 +134,6 @@ def add_card(name, stat, title):
         if stat_level is None:
             return
     monster_cards[name][stat] = stat_level
-
-
-def print_cards():
-    for name, skill_level in monster_cards.items():
-        print(f"\nMonster Name: {name}")
-
-        for skill in skill_level:
-            print(f"{skill}: {skill_level[skill]}")
-
-
-def change_card():
-    monster_card_names = [i for i in monster_cards]
-    new_name = ""
-    name = easygui.buttonbox("Select what Monster Card you would like to "
-                             "Change", "Monster Card Changer",
-                             choices=monster_card_names)
-    choice_list = ["Name", "Strength", "Speed", "Stealth", "Cunning"]
-    while True:
-        option = easygui.buttonbox(f"Select the part of {name} you would "
-                                   f"like to change", "Monster Card Changer",
-                                   choices=choice_list)
-        if option == "Name":
-            while new_name == "" or new_name is None:
-                new_name = easygui.enterbox(f"Enter the new name for "
-                                            f"{name}", "Monster Card Changer")
-            monster_cards[new_name] = monster_cards[name]
-            del monster_cards[name]
-            name = new_name
-        else:
-            add_card(name, option, "Changer")
-            while monster_cards[name][option] is None:
-                add_card(name, option, "Changer")
-
-        yorn = easygui.ynbox(f"{name}:\nStrength = "
-                             f"{monster_cards[name]['Strength']}\nSpeed = "
-                             f"{monster_cards[name]['Speed']}\nStealth = "
-                             f"{monster_cards[name]['Stealth']}\nCunning = "
-                             f"{monster_cards[name]['Cunning']}\nWould you "
-                             f"like to change anything else?",
-                             "Monster Card Changer")
-        if not yorn:
-            break
 
 
 while True:
